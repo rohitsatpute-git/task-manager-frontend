@@ -37,10 +37,10 @@ const TaskManager = () => {
   };
 
   const handleUpdate = async (task) => {
-    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/tasks/${editing.id}/`, {
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/tasks/${editing.id}/?userId=${user.userId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-      body: JSON.stringify({...task, user_id: user.userId})
+      body: JSON.stringify(task)
     });
     if (res.ok) {
       setEditing(null);
@@ -49,7 +49,7 @@ const TaskManager = () => {
   };
 
   const handleDelete = async (id) => {
-    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/tasks/${id}/`, {
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/tasks/${id}/?userId=${user.userId}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` }
     });
