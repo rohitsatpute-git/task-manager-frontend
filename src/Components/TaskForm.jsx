@@ -5,7 +5,7 @@ const TaskForm = ({ onSubmit, initialData = {}, submitLabel = 'Create Task', set
   const [title, setTitle] = useState(initialData?.title || '');
   const [description, setDescription] = useState(initialData?.description || '');
   const [effort, setEffort] = useState(initialData?.effort || '');
-  const [due_date, setDue_date] = useState(initialData?.due_date || '');
+  const [due_date, setDueDate] = useState(initialData?.due_date || '');
 
   const handleSubmit = (e) => {
     e.preventDefault();

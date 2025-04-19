@@ -10,7 +10,6 @@ const AuthPage = () => {
 
   const handleAuth = async (e) => {
     e.preventDefault();
-    console.log("bakcned url", import.meta.env.VITE_AUTH_BACKEND_URL)
     const url = import.meta.env.VITE_AUTH_BACKEND_URL + (isLogin ? '/api/login' : '/api/signup');
     const res = await fetch(url, {
       method: 'POST',

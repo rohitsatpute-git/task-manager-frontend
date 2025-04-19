@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../store/userSlice';
 
 const ProtectedRoute = ({ children }) => {
+  const dispatch = useDispatch();
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const token = localStorage.getItem('token');
 
@@ -12,7 +15,11 @@ const ProtectedRoute = ({ children }) => {
           headers: { Authorization: `Bearer ${token}` },
         });
         const response = await res.json();
-        if (response.valid) setIsAuthenticated(true);
+        console.log('res', response)
+        if (response.valid) {
+            dispatch(setUser(response.user))
+            setIsAuthenticated(true);
+        }
         else setIsAuthenticated(false);
       } catch {
         setIsAuthenticated(false);
